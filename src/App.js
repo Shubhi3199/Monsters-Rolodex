@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import './App.css';
 
 import { CardList } from "./components/card-list/card-list.components";
+import {SearchBar} from "./components/search-box/search-box.component";
 
 class App extends Component{
   constructor(){
@@ -25,10 +26,9 @@ class App extends Component{
       });
       return (
         <div className="App">
-            <input
-                type={`search`}
+            <SearchBar
                 placeholder={`Search Your Monster`}
-                onChange={e => this.setState({searchItem: e.target.value})}  // onChange is a synthetic react event and not an actual HTML event (onchange)
+                handleChange={e => this.setState({searchItem: e.target.value})}  // onChange is a synthetic react event and not an actual HTML event (onchange)
             />
             <CardList monsters={filteredMonsters} />
         </div>
