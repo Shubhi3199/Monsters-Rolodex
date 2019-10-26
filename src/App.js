@@ -19,6 +19,9 @@ class App extends Component{
           .then(users => this.setState({monsters : users}))    // 2. json placeholder API returns an array which is set to as our state
 
   }
+  handleChange = e =>{
+      this.setState({searchItem: e.target.value})
+  };
   render() {
       const {monsters, searchItem} = this.state; // Destructured Monsters array and searchItem string from the state as constants
       const filteredMonsters = monsters.filter(monster => {
@@ -26,9 +29,10 @@ class App extends Component{
       });
       return (
         <div className="App">
+            <h1>Monsters Rolodex</h1>
             <SearchBar
                 placeholder={`Search Your Monster`}
-                handleChange={e => this.setState({searchItem: e.target.value})}  // onChange is a synthetic react event and not an actual HTML event (onchange)
+                handleChange={this.handleChange}  // onChange is a synthetic react event and not an actual HTML event (onchange)
             />
             <CardList monsters={filteredMonsters} />
         </div>
